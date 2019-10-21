@@ -6,29 +6,30 @@ class Doctor
   def initialize(name)
     @name = name
     @@all << self
-  end
+  end #initialize
   
   def appointments
     Appointment.all.select{ |appt| appt.doctor == self}
-  end
+  end #appointments
   
   def new_appointment(patient, date)
     Appointment.new(date, patient, self)
-  end
+  end #new_appointment
   
   def patients
     all_my_patients = []
     Appointment.all.select do |appt| 
       if appt.doctor == self
         all_my_patients << appt.patient
-      end
-    end
+      end #if
+    end# do
     all_my_patients
     
-  end
+  end #patients
   
   def self.all
     @@all
-  end
+  end # all
+  
 end
   
