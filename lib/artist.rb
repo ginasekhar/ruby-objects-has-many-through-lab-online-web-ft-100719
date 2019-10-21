@@ -2,8 +2,10 @@ class Artist
   attr_accessor :name 
   
   @@all = []
-  def initialize
+  
+  def initialize(name)
     @@all << self
+    @name = name
   end
   
   def songs 
@@ -17,7 +19,13 @@ class Artist
   end 
 
   def genres 
-    Song.all.select {|song| song.artist == self }
+    all_my_genres = []
+    Song.all.select do |song| 
+      if song.artist == self
+        all_my_genres << song.genre
+      end
+    end
+    all_my_genres
   end
   
   def self.all 
